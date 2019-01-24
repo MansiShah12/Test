@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import registerUser from '../../Actions/users'
-import { NavigationActions } from 'react-navigation'
 import {connect} from 'react-redux'
 import { SafeAreaView, TouchableOpacity, View, Text, TextInput,Dimensions, StyleSheet} from 'react-native'
 const {height, width} = Dimensions
@@ -29,9 +28,7 @@ var _this;
     }
   }
 componentWillReceiveProps(nextProps){
-  console.log("this.nextpropssssssss", nextProps)
   if(this.props.registered!== nextProps.registered){
-  //alert(nextProps.registered)
   this.props.navigation.navigate('Movies')
   }
 }
@@ -43,13 +40,9 @@ save(){
    email: this.state.email,
     password: this.state.pword,
   }
-  console.log("dadadadadaddada", JSON.stringify(data))
   this.props.registerUser(data)
-
-
 }
   validate(){
-    console.log("in Validateeeeeeeeeeeeeee")
     const {fname, lname, email, pword, cpword}= this.state
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
 
@@ -70,7 +63,6 @@ save(){
   }
 
   render() {
-    console.log("this.props.registered", this.props)
     return (
      <SafeAreaView>
        <View style = {{alignContent : 'center'}}>
@@ -142,8 +134,6 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state){
   const userReducer = state.userReducer;
-  console.log("userReducerrrrrrrr",userReducer)
-
   return{
     registered:userReducer.registered,
   }

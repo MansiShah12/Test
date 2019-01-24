@@ -1,5 +1,5 @@
 export default Base = {
 //fetchMovies
- fetchMovies : "http://127.0.0.1:3000/v1/movies.json",
- register : "http://127.0.0.1:3000/v1/register.json"
+ fetchMovies : "https://26d38151.ngrok.io/v1/movies.json",
+ register : "https://26d38151.ngrok.io/v1/register.json"
 }

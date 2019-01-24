@@ -28,7 +28,6 @@ const {height,width} = Dimensions.get('window');
   )
 
  render(){
-     console.log("this.state.moviessssssssssssssss", this.state.movies.movies)
      return(
          <View style = {{}}>
                 <FlatList

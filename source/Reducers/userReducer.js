@@ -1,5 +1,7 @@
 const data = {
-    registered : false
+    registered : false,
+    email : '',
+    accessToken : ''
 }
 
 export default function (state = data, action){
@@ -8,7 +10,10 @@ export default function (state = data, action){
         console.log("action.payloadddddddd", action.payload)
             return{
                 ...state,
-                registered : action.payload
+                registered : true,
+                email : action.payload.email,
+                accessToken : action.payload.accessToken
+
             }
         default:
     return state;

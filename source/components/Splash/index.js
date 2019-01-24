@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {View, Text, ImageBackground, Animated, Easing } from 'react-native'
 import scale from '../../utils/scale'
-//import * as Actions  from '../../Actions/movies'
 import {connect } from 'react-redux'
 import {fetchMovies} from '../../Actions/movies'
  class Home extends Component {
@@ -12,7 +11,6 @@ import {fetchMovies} from '../../Actions/movies'
  }
 componentDidMount(){
   this.spin()
-  //this.animate()
   this.props.fetchMovies();
  
    
@@ -42,9 +40,7 @@ componentDidMount(){
   }
 
     render(){
-      //console.log("in splash", this.props.movies)
-
-        const fontSize = this.animatedValue.interpolate({
+       const fontSize = this.animatedValue.interpolate({
             inputRange: [0, 0.6 ],
             outputRange: [0, scale(33)]
           })
@@ -71,7 +67,7 @@ function mapDispatchToProps(dispatch){
 }
 
 function mapStateToProps(state){
-  const{MoviesReducer}=state;
+  const{MoviesReducer, userReducer}=state;
   return{
     movies:MoviesReducer.data,
   }

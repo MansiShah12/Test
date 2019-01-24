@@ -5,11 +5,9 @@
          payload: data
         }
      )
-
- }
+}
 
  export  function registerUserSuccess(data){
-     console.log("datadatdatdtd aftetrtrtrtrtr", data)
     return({
         type : 'REGISTER_USER_SUCCESS',
         payload : data
