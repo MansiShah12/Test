@@ -1,20 +1,25 @@
 const data = {
-    registered : false,
-    email : '',
-    accessToken : ''
+     email : '',
+    accessToken : '',
+    loggedIn : false
 }
 
 export default function (state = data, action){
     switch(action.type){
         case 'REGISTER_USER_SUCCESS' :
-        console.log("action.payloadddddddd", action.payload)
-            return{
+       return{
                 ...state,
-                registered : true,
+                loggedIn : true,
                 email : action.payload.email,
                 accessToken : action.payload.accessToken
-
             }
+            case 'LOGOUT_USER_SUCCESS' :
+         return{
+                ...state,
+                loggedIn : false,
+                email : '',
+                accessToken : '',
+             }
         default:
     return state;
     }

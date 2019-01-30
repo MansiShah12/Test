@@ -1,7 +1,6 @@
 
 
 export function fetchMovies(){
-    console.log("in fetchMovies Actionnnnnnn")
   return({
       type : 'FETCH_MOVIES'
   })

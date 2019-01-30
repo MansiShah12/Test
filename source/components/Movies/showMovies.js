@@ -1,16 +1,17 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {View, Text, SafeAreaView,FlatList, Image,  Dimensions, TouchableOpacity} from 'react-native'
-const {height,width} = Dimensions.get('window');
-
- export default class ShowMovies extends Component {
+import {logoutUser} from '../../Actions/users'
+const {width} = Dimensions.get('window');
+ export class DisplayMovies extends Component {
    constructor(props){
        super(props);
        this.state = {
            movies : this.props.movies,
        }
    }
-
-   renderImage = item => (
+   
+renderImage = item => (
     <TouchableOpacity 
      onPress={()=> {
             this.props.openDetailView(true, item)
@@ -24,13 +25,12 @@ const {height,width} = Dimensions.get('window');
           
     </View>
     </TouchableOpacity>
-       
   )
-
+  
  render(){
      return(
-         <View style = {{}}>
-                <FlatList
+         <View>
+         <FlatList
                 style={{width}}
                 data = {this.props.movies.movies}
                 keyExtractor={item => item._id}
@@ -38,8 +38,13 @@ const {height,width} = Dimensions.get('window');
                 numColumns={2}
                 />
             </View>
-           
-        
-     )
+      )
  }
 }
+
+function mapDispatchToProps(dispatch){
+    return {
+      logoutUser : (email) => dispatch(logoutUser(email)) ,
+    }
+  }
+  export default ShowMovies =  connect(null, mapDispatchToProps)(DisplayMovies)

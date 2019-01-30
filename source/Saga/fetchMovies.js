@@ -3,7 +3,6 @@ import {fetchMoviesSuccess} from '../Actions/movies'
 import callMovies from '../services/fetchMovies'
 
 export default function* allMovies(){
-    console.log("in fetchMovies Sagagagagagagagga")
    try {
     var movies = yield call(callMovies)
     movies=movies._bodyInit
@@ -11,7 +10,7 @@ export default function* allMovies(){
   yield put(fetchMoviesSuccess(movies.movies))
    }catch (e) {
     console.log("In catchhhhhhhhh", e)
-  
+    
 }
 }
 

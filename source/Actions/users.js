@@ -1,10 +1,15 @@
  export default function registerUser(data){
-     console.log("register data is", data)
      return({
          type : "REGISTER_USER",
          payload: data
-        }
-     )
+        })
+}
+
+export  function loginUser(loginData){
+     return({
+        type : "LOGIN_USER",
+        payload: loginData
+       })
 }
 
  export  function registerUserSuccess(data){
@@ -12,4 +17,18 @@
         type : 'REGISTER_USER_SUCCESS',
         payload : data
     })
-  }
+}
+
+export  function logoutUser(email){
+    return({
+        type : 'LOGOUT_USER',
+        payload : email
+    })
+}
+
+export  function logoutUserSuccess(data){
+    return({
+        type : 'LOGOUT_USER_SUCCESS',
+        payload : data
+    })
+}

@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import App from './App';
-import store from './source/Store';
+import configureStore from './source/Store';
 
 class Setup extends Component {
 
     constructor() {
       super();
-    //   this.state = {
-    //     isLoading: false,
-    //     store: configureStore(() => this.setState({ isLoading: false })).store
-    //   };
+      this.state = {
+        store: configureStore().store
+      };
     }
 
     render() {
-        console.log("in setUppppppp")
-      return (
-        <Provider store={store}>
+       return (
+        <Provider store={this.state.store}>
           <App />
         </Provider>
         
