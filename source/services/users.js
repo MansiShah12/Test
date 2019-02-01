@@ -30,4 +30,13 @@ export function logout(email){
   })
 }
 
+export function update(data){
+  return fetch(Base.update,{
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+}
 

@@ -47,9 +47,9 @@ class Home extends Component {
         }
       ).start(()=>{ 
         if(this.state.loggedIn){
-        this.props.navigation.navigate('Movies')
-      }else
-        this.props.navigation.navigate('Login')
+          this.props.navigation.navigate('Movies')
+        }else
+          this.props.navigation.navigate('Login')
   })}
 
       render(){
@@ -59,7 +59,7 @@ class Home extends Component {
             })
             const spin = this.spinValue.interpolate({
               inputRange: [0, 1],
-              outputRange: ['0deg', '360deg']
+              outputRange: ['0deg', '0deg']
             })
           
           return(

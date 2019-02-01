@@ -1,10 +1,12 @@
+const baseUrl = "http://22ab12cb.ngrok.io"
 export default Base = {
 //fetchMovies
- fetchMovies : "http://92ca0002.ngrok.io/v1/movies.json",
+ fetchMovies : `${baseUrl}/v1/movies.json`,
 
 //User
- register : "http://92ca0002.ngrok.io/v1/register.json",
- login : "http://92ca0002.ngrok.io/v1/login.json",
- logout : "http://92ca0002.ngrok.io/v1/logout.json"
+ register : `${baseUrl}/v1/register.json`,
+ login : `${baseUrl}/v1/login.json`,
+ logout : `${baseUrl}/v1/logout.json`,
+ update : `${baseUrl}/v1/updateUser.json`
 }
 

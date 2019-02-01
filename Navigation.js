@@ -5,14 +5,11 @@ import Register from './source/components/Register'
 import Login from './source/components/Login'
 
 export default stackNavigation = createStackNavigator({
-     Splash : {screen : Splash},
-     Movies : {screen : Movies},
+    Splash : {screen : Splash},
+    Movies : {screen : Movies},
     Register : {screen : Register},
     Login : {screen : Login},
-
-}, navigationOptions ={
+ }, navigationOptions ={
     headerMode : 'none'
 })
-
-
 

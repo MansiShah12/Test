@@ -5,6 +5,7 @@ import callMovies from '../services/fetchMovies'
 export default function* allMovies(){
    try {
     var movies = yield call(callMovies)
+    //console.log("movies areeeee", movies)
     movies=movies._bodyInit
     movies = JSON.parse(movies)
   yield put(fetchMoviesSuccess(movies.movies))

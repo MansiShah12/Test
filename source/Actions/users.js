@@ -32,3 +32,15 @@ export  function logoutUserSuccess(data){
         payload : data
     })
 }
+export  function updateUser(updatedata){
+    return({
+        type : 'UPDATE_USER',
+        payload : updatedata
+    })
+}
+export function updatedUserSuccess(data){
+    return({
+        type : 'UPDATE_USER_SUCCESS',
+        payload : data
+    })
+}
