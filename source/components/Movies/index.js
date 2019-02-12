@@ -67,7 +67,7 @@ class Movies extends Component {
                         </ScrollView>
                     </View>
                     {this.state.openDetailView ?
-                        <MovieDetails selectedMovie={this.state.selectedMovie} open={this.state.openDetailView} closeDetailView={() => this.closeDetailView()} />
+                        <MovieDetails selectedMovie={this.state.selectedMovie} open={this.state.openDetailView} closeDetailView={() => this.closeDetailView()} navigation = {this.props.navigation} />
                         : <View />
                     }
                 </Drawer>

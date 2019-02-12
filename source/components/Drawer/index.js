@@ -1,19 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Image, TouchableOpacity, ImageBackground, View, Text, ScrollView, Dimensions } from 'react-native';
+import { logoutUser } from '../../Actions/users'
 import {styles} from './styles'
-
-// import {
-//   Text,
-//   Container,
-//   List,
-//   ListItem,
-//   Content,
-// } from 'native-base';
-
-// import { signingOut } from '../../services/authentication';
-// import { signOut, removeMessages } from '../../actions/user';
-// import { fetchMessageList, removeChatListListener } from '../../actions/fetchMessage'
 
 const { width, height } = Dimensions.get('window');
 const routes = ['Home', 'Register', 'Login'];
@@ -38,33 +27,17 @@ class DrawerNavigator extends React.Component {
     } else if (name === 'Login') {
       this.props.navigation.navigate('Login');
     } 
-    // else if (name === 'Logout') {
-    //   signingOut(this.props.user.auth_token, this.props.user.email)
-    //     .then(
-    //       response => response.json(),
-    //       error => error
-    //     )
-    //     .then(json => {
-    //       if(json.success === true){
-    //         this.props.loggingOutUser(true);
-    //         this.props.removeMessages()
-    //         this.props.navigation.navigate("Home");
-    //         this.props.navigation.closeDrawer("Home");
-    //       }else{
-    //         this.props.loggingOutUser(true);
-    //         // remove chat listener
-    //         this.props.removeChatListListener(this.props.user)
-    //         alert("Logout failed", json)
-    //         console.log('TODO: show error messages on failed');
-    //         console.log(json);
-    //         //TODO: show error messages on failed
-    //       }
-    //     });
-    // }
+    else if (name === 'Logout') {
+      email = { email: this.props.user.email };
+        this.props.logoutUser(email);
+    }else if (name === 'changePassword') {
+      this.props.navigation.navigate('changePassword');
+    }
   }
   
 
   render() {
+    //console.log("this.props.userrrrr", this.props.user)
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
       <View style= {{margin : 20}}>
@@ -78,10 +51,10 @@ class DrawerNavigator extends React.Component {
           <Text style={styles.textStyle} onPress = {()=>this.routeName("Register")}>Profile</Text>
             </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={styles.textStyle}>Password</Text>
+            <Text style={styles.textStyle} onPress = {()=>this.routeName("changePassword")}>Password</Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={styles.textStyle}>Logout</Text>
+            <Text style={styles.textStyle} onPress = {()=>this.routeName("Logout")}>Logout</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -90,16 +63,15 @@ class DrawerNavigator extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.user
+  const {  userReducer } = state
+return {
+    user: userReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loggingOutUser: (success, errorMsg='') => dispatch(signOut(success, errorMsg)),
-    removeChatListListener: (user) => dispatch(removeChatListListener(user)),
-    removeMessages: () => dispatch(removeMessages()),
+    logoutUser: (email) => dispatch(logoutUser(email)),
   }
 }
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import registerUser, {updateUser} from '../../Actions/users'
+import registerUser, { updateUser } from '../../Actions/users'
 import { connect } from 'react-redux'
-import { SafeAreaView, TouchableOpacity, View, Text, TextInput} from 'react-native'
+import { SafeAreaView, TouchableOpacity, View, Text, TextInput } from 'react-native'
+import Icon from 'react-native-vector-icons/Entypo'
 import styles from './styles'
 
 var _this;
@@ -20,11 +21,11 @@ class Register extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     if (this.props.loggedIn) {
-      this.setState({forUpdate : true})
+      this.setState({ forUpdate: true })
     }
-   }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
@@ -32,7 +33,7 @@ class Register extends Component {
         accessToken: nextProps.accessToken,
         email: nextProps.email
       }
-      this.setState({forUpdate : true})
+      this.setState({ forUpdate: true })
       this.props.navigation.navigate('Movies')
     }
   }
@@ -46,13 +47,13 @@ class Register extends Component {
     }
     this.props.registerUser(data)
   }
-  updateUser(){
+  updateUser() {
     const data = {
       first_name: this.state.fname,
       last_name: this.state.lname,
       email: this.state.email,
-     }
-     this.props.updateUser(data)
+    }
+    this.props.updateUser(data)
   }
   validate() {
     const { fname, lname, email, pword, cpword } = this.state
@@ -81,8 +82,14 @@ class Register extends Component {
         <View style={{ alignContent: 'center' }}>
           {
             this.state.forUpdate ?
-              <View style={{ alignItems: 'center', marginTop: 20 }}>
-                <Text style={{ fontSize: 30, color: "rgba(103,58,183, 1)" }}>EDIT</Text>
+              <View style={{ alignSelf : 'stretch', marginTop: 20 }}>
+                <TouchableOpacity style={{alignItems : 'flex-end', margin : 10}}
+                onPress = {()=>{this.props.navigation.goBack()}}>
+                  <Icon name={'circle-with-cross'} size={30} style= {{ color:"rgba(103,58,183, 1)" , }} />
+                </TouchableOpacity>
+                <View style={{ alignItems: "center", justifyContent : 'center'}}>
+                  <Text style={{ fontSize: 30, color: "rgba(103,58,183, 1)" }}>EDIT</Text>
+                </View>
               </View> :
               <View style={{ alignItems: 'center', marginTop: 20 }}>
                 <Text style={{ fontSize: 30, color: "rgba(103,58,183, 1)" }}>Register</Text>
@@ -96,7 +103,7 @@ class Register extends Component {
             <TextInput value={this.state.fname} onChangeText={(text) => this.setState({ fname: text })} style={styles.textInput} />
             <Text style={{ fontSize: 20 }}>Last Name</Text>
             <TextInput value={this.state.lname} onChangeText={(text) => this.setState({ lname: text })} style={styles.textInput} />
-                  
+
             {
               this.state.forUpdate ? <View /> :
                 <View>

@@ -8,18 +8,40 @@ class Details extends Component {
         super(props);
         this.state = {
             open: this.props.open,
-            selectedMovie: props.selectedMovie,
+            selectedMovie: props.selectedMovie.item,
             buttonText: "Show Subview",
             selectedDay: null,
             selectedTime: null,
+            codeObj: {}
         }
     }
-
+closeModal(){
+    this.setState({
+        open: false
+    });
+    this.props.closeDetailView()
+}
 _toggleSubview() {
+    if(this.state.selectedDay==null){
+        alert("Please select a day")
+    }else if(this.state.selectedTime==null){
+        alert("Please select a Time")
+}else
+   { code = Math.random().toString(36).substring(6).toUpperCase(),
+    codeObj = {
+        code: code,
+        movie: this.state.selectedMovie.title,
+        day: this.state.selectedDay,
+        time: this.state.selectedTime,
+    }
+    setTimeout(() => {
         this.setState({
-            open: false
-        });
-        this.props.closeDetailView()
+            open: false,
+            codeObj : codeObj
+        }, ()=>{this.props.navigation.navigate("QRCode", {code:this.state.codeObj})
+        this.props.closeDetailView()});  
+         }, 500);
+     }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -32,7 +54,8 @@ _toggleSubview() {
     }
 
     render() {
-        const movieDetail = { ...this.state.selectedMovie.item, ...this.state.selectedMovie.item }
+       //console.log("this.propssss", this.props)
+        const movieDetail = this.state.selectedMovie
         const days = movieDetail.days
         const times = movieDetail.times
         return (
@@ -43,14 +66,17 @@ _toggleSubview() {
             >
 
                 <View style={{ justifyContent: 'center', flex: 1 }}>
-                    <TouchableOpacity style={styles.book} onPress={() => { this._toggleSubview() }}>
+                    <TouchableOpacity style={styles.book} onPress={() => { this.closeModal() }}>
                         <Text style={styles.buttonText}>Cross</Text>
                     </TouchableOpacity>
 
                     <Image
-                        style={{ padding: 10, marginVertical: 25, height: 300, width: 250, alignSelf: 'center' }}
+                        style={{ padding: 10, marginVertical: 20, height: 300, width: 250, alignSelf: 'center' }}
                         source={{ uri: movieDetail.poster }} />
-                    <Text style={{ margin: 5 }}>Day</Text>
+                        <View style={{alignItems : 'center'}}> 
+                        <Text style={{textDecorationLine : 'underline',fontSize : 30, fontFamily : 'Heather', color :'rgba(103,58,183, 1)' }}>{movieDetail.title}</Text>
+                        </View>
+                        <Text style={{ margin: 5 }}>Day</Text>
                     <View style={{ height: 40 }}>
                         <FlatList
                             data={days}
